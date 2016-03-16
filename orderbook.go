@@ -1,10 +1,5 @@
 package sfapi
 
-const (
-	// the "tell" of a bulldozer order is the quantity- generally above 10,000
-	bulldozerQtyThreshold = int64(10000)
-)
-
 type OrderBook struct {
 	APIResponse
 	Venue  string
@@ -58,24 +53,4 @@ func (ob *OrderBook) String() (result string) {
 	result += "=== ORDERBOOK END ==="
 
 	return
-}
-
-func (ob *OrderBook) FindBulldozerOrder() *BidOrAsk {
-	for _, bid := range ob.Bids {
-		if bid.Qty >= bulldozerQtyThreshold {
-			return &bid
-		}
-	}
-
-	for _, ask := range ob.Asks {
-		if ask.Qty >= bulldozerQtyThreshold {
-			return &ask
-		}
-	}
-
-	return nil
-}
-
-func (ob *OrderBook) BulldozerPresent() bool {
-	return ob.FindBulldozerOrder() != nil
 }
