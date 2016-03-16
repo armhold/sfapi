@@ -2,7 +2,6 @@ package main
 
 import (
 	"flag"
-	"fmt"
 	"log"
 	"os"
 
@@ -25,10 +24,14 @@ var (
 	a                 *sfapi.API
 )
 
+/*
+ A somewhat clunky way to stop/start the various levels, and save the game info to /tmp/gamelevel.
+ This obviates the need to copy/paste the account/venue/symbol by hand each time you restart your client.
+*/
+
 func main() {
 	if authKey == "" {
-		fmt.Fprintf(os.Stderr, "STARFIGHTER_API_KEY environment variable not set")
-		os.Exit(1)
+		log.Fatal(os.Stderr, "STARFIGHTER_API_KEY environment variable not set")
 	}
 
 	flag.Parse()
