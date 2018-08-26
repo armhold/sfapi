@@ -31,7 +31,7 @@ var (
 
 func main() {
 	if authKey == "" {
-		log.Fatal(os.Stderr, "STARFIGHTER_API_KEY environment variable not set")
+		log.Fatal("STARFIGHTER_API_KEY environment variable not set")
 	}
 
 	flag.Parse()
